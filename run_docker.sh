@@ -11,5 +11,3 @@ docker build --tag=$TAG .
 # List docker images
 docker image ls
 
-# Step 3:
-docker run -p 3000:3000 $TAG
