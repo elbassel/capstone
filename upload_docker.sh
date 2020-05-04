@@ -11,9 +11,9 @@ dockerpath=basselista/capstone
 # Authenticate & tag
 # echo "Docker ID and Image: $dockerpath"
 export DOCKER_ID_USER="basselista"
-docker tag project4 $dockerpath
-docker login
+sudo docker tag capstone $dockerpath
+sudo docker login
 
 # Step 3:
 # Push image to a docker repository
-docker push $dockerpath
+sudo docker push $dockerpath

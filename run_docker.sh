@@ -5,11 +5,11 @@
 # Step 1:
 # Build image and add a descriptive tag
 TAG=capstone
-docker build --tag=$TAG .
+sudo docker build --tag=$TAG .
 
 # Step 2:
 # List docker images
-docker image ls
+sudo docker image ls
 
 # Step 3:
-docker run -p 3000:3000 $TAG
+sudo docker run -p 3000:3000 $TAG
