@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+      registry = "basselista/capstone"
+      registryCredential = ‘dockerhub’
+    }
     agent any
     stages {
         stage('Build Image') {
