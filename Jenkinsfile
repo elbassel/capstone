@@ -1,15 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                sh 'echo hello world'
-                sh '''
-                    echo "Multiline shellworks too"
-                    ls -lah
-                '''
-            }
-        }
 //         stage('Linting') {
 //             steps {
 //                 sh 'npm i'
@@ -19,6 +10,14 @@ pipeline {
         stage('Build Image') {
             steps {
                 sh './run_docker.sh'
+            }
+        }
+        stage('Check node modules') {
+            steps {
+                sh 'ls'
+                sh '''
+                    ls /capstone/node_modules
+                '''
             }
         }
         stage('Upload image') {
