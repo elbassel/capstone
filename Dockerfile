@@ -3,5 +3,5 @@ WORKDIR /capstone
 RUN rm -rf /capstone/node_modules
 RUN npm install
 COPY . /capstone
-CMD node index.js
+CMD npm start
 EXPOSE 3000
