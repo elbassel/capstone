@@ -1,6 +1,7 @@
 FROM node:10-alpine
-WORKDIR /app
+WORKDIR /capstone
+RUN rm -rf /capstone/node_modules
 RUN npm install
-COPY . /app
+COPY . /capstone
 CMD node index.js
 EXPOSE 3000
