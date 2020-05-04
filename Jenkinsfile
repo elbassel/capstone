@@ -18,12 +18,7 @@ pipeline {
 //         }
         stage('Build Image') {
             steps {
-                sh '''
-                    TAG=capstone
-                    docker build --tag=$TAG .
-
-                    docker image ls
-                '''
+                sh './run_docker.sh'
             }
         }
         stage('Upload image') {
