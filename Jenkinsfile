@@ -1,7 +1,7 @@
 pipeline {
     environment {
       registry = "basselista/capstone"
-      registryCredential = ‘dockerhub’
+      registryCredential = 'dockerhub'
     }
     agent any
     stages {
