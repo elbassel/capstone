@@ -3,14 +3,18 @@ pipeline {
     registry = "basselista/capstone"
     registryCredential = 'dockerhub'
     dockerImage = ''
-    DOCKER_TAG = getDockerTag()
   }
   agent any
   stages {
+    stage('Build') {
+       steps {
+         sh 'npm install'
+       }
+    }
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build . registry + ":$DOCKER_TAG"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
@@ -23,12 +27,10 @@ pipeline {
         }
       }
     }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
   }
-}
-
-def getDockerTag() {
- int randomStringLength = 32
- String charset = (('a'..'z') + ('A'..'Z') + ('0'..'9')).join()
- String randomString = RandomStringUtils.random(randomStringLength, charset.toCharArray())
- return randomString
 }
