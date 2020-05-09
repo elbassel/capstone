@@ -3,18 +3,14 @@ pipeline {
     registry = "basselista/capstone"
     registryCredential = 'dockerhub'
     dockerImage = ''
+    DOCKER_TAG = getDockerTag()
   }
   agent any
   stages {
-    stage('Build') {
-       steps {
-         sh 'npm install'
-       }
-    }
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$DOCKER_TAG"
         }
       }
     }
@@ -27,10 +23,10 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
   }
+}
+
+def getDockerTag() {
+ def tag = sh script: 'git rev-parse HEAD', returnStdout: true
+ return tag
 }
