@@ -27,6 +27,8 @@ pipeline {
 }
 
 def getDockerTag() {
- def tag = sh script: 'git rev-parse HEAD', returnStdout: true
- return tag
+ int randomStringLength = 32
+ String charset = (('a'..'z') + ('A'..'Z') + ('0'..'9')).join()
+ String randomString = RandomStringUtils.random(randomStringLength, charset.toCharArray())
+ return randomString
 }
