@@ -30,10 +30,11 @@ pipeline {
     stage('Create cluster for first time') {
       steps{
         script{
-
+          try{
             sh 'eksctl create cluster -f ./cluster/cluster-setup.yml'
             sh 'kubectl apply -f ./cluster/service.yml'
-
+          }catch(e) {
+          }
         }
       }
     }
