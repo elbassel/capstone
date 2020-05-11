@@ -27,6 +27,22 @@ pipeline {
         }
       }
     }
+    stage('Create cluster for first time') {
+      steps{
+        script{
+          try{
+            sh 'eksctl create cluster -f ./cluster/cluster-setup.yml'
+            sh 'kubectl apply -f ./cluster/service.yml'
+          }catch(e) {
+          }
+        }
+      }
+    }
+    stage('Deploy to K8s') {
+       steps {
+         sh 'kubectl apply -f ./cluster/deployment.yml'
+       }
+    }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:latest"
