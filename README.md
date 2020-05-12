@@ -6,7 +6,8 @@ Passed successfully
 ![Voucher Pool](screenshots/00pipelines.png)
 
 ## Docker Hub:
-deployment_service.png
+![Voucher Pool](screenshots/deployment_service.png)
+
 
 ## Deployment - Service
 ![Voucher Pool](screenshots/deployment_service.png)
