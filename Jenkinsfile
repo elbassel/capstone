@@ -32,10 +32,20 @@ pipeline {
         }
       }
     }
+
+    stage('Set Current kubectl Context') {
+      steps {
+        withAWS(credentials: 'aws-credentials', region: 'us-west-2') {
+          sh "pip3 install --upgrade --user awscli"
+          sh "aws eks --region us-west-2 update-kubeconfig --name FinalProject"
+          sh "kubectl config use-context arn:aws:eks:us-west-2:308143947057:cluster/FinalProject"
+        }
+      }
+    }
+
     stage('Deploy to K8s') {
       steps{
         dir('deployment') {
-            sh 'kubectl --kubeconfig="/home/ubuntu/.kube/config"'
             sh 'kubectl apply -f service.yml'
             sh 'kubectl apply -f deployment.yml'
         }
