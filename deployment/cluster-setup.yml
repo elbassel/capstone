@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: capstone-cluster
+  name: final-project
   region: us-west-2
 
 nodeGroups:

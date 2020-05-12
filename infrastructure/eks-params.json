@@ -1,0 +1,10 @@
+[
+{
+    "ParameterKey": "EnvName",
+    "ParameterValue": "Capstone"
+},
+{
+    "ParameterKey": "WorkerNodeImageId",
+    "ParameterValue": "ami-0d1cd67c26f5fca19"
+}
+]
