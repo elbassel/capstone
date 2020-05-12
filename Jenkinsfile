@@ -36,8 +36,8 @@ pipeline {
       steps{
         dir('deployment') {
           withAWS(credentials: 'aws-credentials', region: 'eu-west-2'){
-            sh 'kubectl apply -f ./cluster/service.yml'
-            sh 'kubectl apply -f ./cluster/deployment.yml'
+            sh 'kubectl apply -f service.yml'
+            sh 'kubectl apply -f deployment.yml'
           }
         }
       }
