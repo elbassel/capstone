@@ -35,6 +35,7 @@ pipeline {
     stage('Deploy to K8s') {
       steps{
         dir('deployment') {
+            sh 'kubectl --kubeconfig="/home/ubuntu/.kube/config"'
             sh 'kubectl apply -f service.yml'
             sh 'kubectl apply -f deployment.yml'
         }
