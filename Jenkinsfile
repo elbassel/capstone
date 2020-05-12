@@ -6,6 +6,11 @@ pipeline {
   }
   agent any
   stages {
+    stage('Build app') {
+       steps {
+         sh 'npm i'
+       }
+    }
     stage('Linting') {
        steps {
          sh 'npm run linting'
