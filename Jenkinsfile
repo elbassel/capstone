@@ -6,9 +6,9 @@ pipeline {
   }
   agent any
   stages {
-    stage('Build') {
+    stage('Linting') {
        steps {
-         sh 'npm install'
+         sh 'npm run linting'
        }
     }
     stage('Building image') {
@@ -27,20 +27,15 @@ pipeline {
         }
       }
     }
-    stage('Create cluster for first time') {
+    stage('Deploy to K8s') {
       steps{
-        dir('cluster') {
+        dir('deployment') {
           withAWS(credentials: 'aws-credentials', region: 'eu-west-2'){
             sh 'kubectl apply -f ./cluster/service.yml'
             sh 'kubectl apply -f ./cluster/deployment.yml'
           }
         }
       }
-    }
-    stage('Deploy to K8s') {
-       steps {
-         sh 'kubectl apply -f ./cluster/deployment.yml'
-       }
     }
     stage('Remove Unused docker image') {
       steps{
