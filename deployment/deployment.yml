@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: php-redis
-        image: basselista/capstone:test
+        image: basselista/capstone
         resources:
           requests:
             cpu: 100m
